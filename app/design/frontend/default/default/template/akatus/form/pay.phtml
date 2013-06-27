@@ -41,6 +41,8 @@
 		$retornoArray = json_decode($retJson);
 		$meios = $retornoArray->resposta->meios_de_pagamento;
 
+		if(is_array($meios)){
+
 		foreach($meios as $meiopagamento) {		
 
 		if ($meiopagamento->descricao == "Cartão de Crédito") {
@@ -307,8 +309,13 @@
 					  <span>".$meiopagamento->descricao.'</span>';			
 			} 		
 			echo "</li>";	
+			}
 		}/// fim do foreach	
-	
+		
+		//fim do if para tratar $meios
+		}else{
+			echo "Nenhum meio de pagamento habilitado.".
+		}
 	?>	            
  <input title="<?php echo $this->__('Check Formapagamento:') ?>" name="payment[check_formapagamento]" type="hidden" id="<?php echo $_code ?>_check_formapagamento" value="" />
 
